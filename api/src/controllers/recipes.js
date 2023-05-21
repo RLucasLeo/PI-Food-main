@@ -5,7 +5,7 @@ const {Sequelize} = require("sequelize");
 const {API_KEY} = process.env;
 
 const getApiInfo = async function(){
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/compexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
     
     const apiInfo = await apiUrl.data.results.map(el=>{
         return {
@@ -15,9 +15,7 @@ const getApiInfo = async function(){
             diets: el.diets.map(d=>{return {name: d}}),
             healthScore: el.healthScore,
             image: el.image,
-            instructions: el.analyzedInstructions[0]?.steps.map(pasos=>{
-                return `<b>${pasos.number}</b> ${paso.step} `
-            })
+            instructions: el.analyzedInstructions
         }
     })
     return apiInfo;
@@ -27,7 +25,7 @@ const getDBInfo = async function(){
     return await Recipe.findALL({
         include: {
             model: Diets,
-            attributes: ['name'],
+            attributes: ['title'],
             through: {
                 attributes:[],
             }
@@ -51,7 +49,7 @@ async function getRecipesByName(req, res) {
         const recipeBD = await Recipe.findAll({         
           include: {
             model: Diets,                             
-            attributes: ["name"],                      
+            attributes: ["title"],                      
             through: {
               attributes: [],
             },
@@ -80,7 +78,7 @@ async function getRecipesByName(req, res) {
           },                  
           include : {
             model : TypeDiet,
-            attributes : ['name'],               
+            attributes : ['title'],               
             through: {
                 attributes:[]
             }
