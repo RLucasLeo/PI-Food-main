@@ -2,16 +2,8 @@ const { Router } = require('express');
 const router = Router();
 const {Diets} = require('../db');
 const {allDiets} = require('../controllers/diets')
+const { Op } = require('sequelize');
 
-router.get('/', async (req,res) => {
-        allDiets.forEach(e => {
-            Diets.findOrCreate({
-                where: {name:e.name}
-            })
-        })
-
-         const allTheTypes = await Diets.findAll();
-        res.send(allTheTypes.map(e => e.name))
-})
+router.get('/', allDiets)
 
 module.exports= router;

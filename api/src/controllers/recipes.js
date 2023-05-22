@@ -22,7 +22,7 @@ const getApiInfo = async function(){
 }
 
 const getDBInfo = async function(){
-    return await Recipe.findALL({
+    return await Recipe.findAll({
         include: {
             model: Diets,
             attributes: ['title'],

@@ -4,6 +4,7 @@ require('dotenv').config();
 const axios = require("axios");
 const { getAllRecipes, getRecipesByName } = require("../controllers/recipes");
 const {Recipe, Diets} = require("../db");
+const { Op } = require('sequelize');
 
 router.get('/', getRecipesByName)
 
@@ -34,4 +35,42 @@ router.get('/:id', async (req, res)=>{
     }
 })
 
+router.post('/', async (req, res, next)=>{
+    let {
+        title,
+        image,
+        summary,
+        healthScore,
+        instructions,
+    } = req.body;
+    if(!title || !summary){
+        return res.status(400).send("Ingrese titulo y resumen para continuar!");
+    }else{
+        try { let createRecipe = await Recipe.create({
+            title,
+            image,
+            summary,
+            healthScore,
+            instructions
+        })
+        let dietDb = await Diets.findAll({where: { title: { [Op.in]: Diets } } });
+            createRecipe.addDiets(dietDb)
+            res.status(200).send('Receta creada')
+            
+        } catch (error) {
+            next(error)
+        }
+    }
+})
+
+router.delete('/:id', async (req, res)=>{
+    const {id} = req.params;
+    try {
+        let recipe = await Recipe.findByPk(id)
+        await recipe.destroy()
+        res.status(200).send('Receta borrada')
+    } catch (error) {
+        res.status(400).send('Receta no encontrada')
+    }
+})
 module.exports=router;
