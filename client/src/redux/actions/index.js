@@ -46,7 +46,7 @@ export const orderByScore=(payload)=>{
 export const getRecipesByName=(name)=>{
     return async (dispatch)=>{
         try {
-            const {data}= await axios.get(`http://localhost:3001/videogames?name=${name}`);
+            const {data}= await axios.get(`http://localhost:3001/recipes?name=${name}`);
             return dispatch ({
                 type: GET_BY_NAME,
                 payload: data,
@@ -74,7 +74,7 @@ return async (dispatch)=>{
 export const getDiets=()=>{
     return async (dispatch)=>{
         try {
-            const {data} = await axios.get("http://localhhost:3001/diets")
+            const {data} = await axios.get("http://localhost:3001/diets")
             return dispatch({
                 type: GET_TYPE_DIETS,
                 payload: data,
