@@ -11,9 +11,9 @@ const DELETE_RECIPE = 'DELETE_RECIPE';
 export const getRecipes=()=>{
     return async(dispatch)=>{
         try {
-            const {data} = await axios.get("http://localhost:3000/recipes");
+            const {data} = await axios.get("http://localhost:3001/recipes");
             return dispatch({
-                type: "GET_RECIPES",
+                type: GET_RECIPES,
                 payload: data,
             })
         } catch (error) {
@@ -24,21 +24,21 @@ export const getRecipes=()=>{
 
 export const filterByDiets = (payload)=>{
     return{
-        tpye: "FILTER_BY_TYPEDIET",
+        tpye: FILTER_BY_TYPEDIET,
         payload
     }
 }
 
 export const orderByName =(payload)=>{
     return{
-        type: "ORDER_BY_NAME",
+        type: ORDER_BY_NAME,
         payload
     }
 }
 
 export const orderByScore=(payload)=>{
     return{
-        type: "ORDER_BY_PUNTUATION",
+        type: ORDER_BY_PUNTUATION,
         payload
     }
 }
@@ -46,9 +46,9 @@ export const orderByScore=(payload)=>{
 export const getRecipesByName=(name)=>{
     return async (dispatch)=>{
         try {
-            const {data}= await axios.get(`http://localhost:3000/videogames?name=${name}`);
+            const {data}= await axios.get(`http://localhost:3001/videogames?name=${name}`);
             return dispatch ({
-                type: "GET_BY_NAME",
+                type: GET_BY_NAME,
                 payload: data,
             })
         } catch (error) {
@@ -60,9 +60,9 @@ export const getRecipesByName=(name)=>{
 export const getRecipesById = (id) =>{
 return async (dispatch)=>{
      try {
-        const {data}= await axios.get(`http://localhost:3000/recipes/${id}`)
+        const {data}= await axios.get(`http://localhost:3001/recipes/${id}`)
         return dispatch({
-            type: "GET_BY_ID",
+            type: GET_BY_ID,
             payload: data,
         })
      } catch (error) {
@@ -71,12 +71,41 @@ return async (dispatch)=>{
     }
 }
 
-export const getDiets(){
+export const getDiets=()=>{
     return async (dispatch)=>{
         try {
-            const {data} = await axios.get("http://")
+            const {data} = await axios.get("http://localhhost:3001/diets")
+            return dispatch({
+                type: GET_TYPE_DIETS,
+                payload: data,
+            })
         } catch (error) {
-            
+            console.log(error)
+        }
+    }
+}
+
+export const postRecipes = (payload)=>{
+    return async (dispatch)=>{
+            try {
+                const  dat = await axios.post("http://localhost:3001/recipes", payload);
+                return dat;
+            } catch (error) {
+                console.log(error)
+            }
+    }
+}
+
+export const deleteRecipes = (id)=>{
+    return async (dispatch)=>{
+        try {
+            const {data} = await axios.delete(`http://localhost:3001/recipes/${id}`);
+            return dispatch({
+                type: DELETE_RECIPE,
+                payload: data,
+            })
+        } catch (error) {
+            console.log(error)
         }
     }
 }
