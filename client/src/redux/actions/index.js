@@ -86,7 +86,7 @@ export const getDiets=()=>{
 }
 
 export const postRecipes = (payload)=>{
-    return async (dispatch)=>{
+    return async ()=>{
             try {
                 const  dat = await axios.post("http://localhost:3001/recipes", payload);
                 return dat;
