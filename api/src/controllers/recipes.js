@@ -5,7 +5,7 @@ const {Sequelize} = require("sequelize");
 const {API_KEY} = process.env;
 
 const getApiInfo = async function(){
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
     
     const apiInfo = await apiUrl.data.results.map(el=>{
         return {

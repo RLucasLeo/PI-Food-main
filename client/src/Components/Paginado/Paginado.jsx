@@ -1,9 +1,9 @@
 import s from "./Paginado.module.css"
 
-export default function Paginado ({juegosPorPag, allGames, paginado}){
+export default function Paginado ({recetasPorPag, allRecipes, paginado}){
     const pagNum = [];
 
-    for (let i = 1; i <= Math.ceil(allGames/juegosPorPag); i++) { // .celi(6.6)=7
+    for (let i = 1; i <= Math.ceil(allRecipes/recetasPorPag); i++) { // .celi(6.6)=7
         pagNum.push(i)
     }
     return (

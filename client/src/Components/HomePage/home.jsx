@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Navbar/Navbar";
+import Cards from "../Cards/Cards"
 import Filtros from "../Filtros/Filtros";
 import Paginado from "../Paginado/Paginado"
 import { useEffect, useState } from "react";
@@ -12,7 +13,7 @@ export default function Home (){
     const [//orden
     , setOrden] = useState("")
     const[currentPage, setCurrentPage]= useState(1)
-    const recetasPorPag=15;
+    const recetasPorPag=9;
     const indexUltiJuego= currentPage * recetasPorPag;
     const indexPrimJuego= indexUltiJuego - recetasPorPag;
     const currentRecipes= allRecipes.slice(indexPrimJuego, indexUltiJuego)//esto es para el card
@@ -45,8 +46,9 @@ export default function Home (){
     return (
         <div>
         <Navbar></Navbar>
-        <Filtros handleSort={handleSort} handleByScore={handleByScore} handleFilterByDiets={handleFilterByDiets}></Filtros>
         <Paginado recetasPorPag={recetasPorPag} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
+        <Filtros handleSort={handleSort} handleByScore={handleByScore} handleFilterByDiets={handleFilterByDiets}></Filtros>
+        <Cards currentRecipes={currentRecipes}></Cards>
         </div>
     )
 }

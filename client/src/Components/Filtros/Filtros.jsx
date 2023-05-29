@@ -13,7 +13,7 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
     return(
         <div className={s.box}>
         <select onChange={e => handleSort(e)}>
-            <option value="" >Ordenar por...</option>
+            <option value="Todos" >Ordenar por...</option>
             <option value="asc" >A-Z</option>
             <option value="desc" >Z-A</option>
         </select>
