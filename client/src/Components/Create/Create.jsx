@@ -5,12 +5,13 @@ import {postRecipes, getDiets} from "../../redux/actions/index"
 import {useDispatch, useSelector} from "react-redux"
 
 function controlForm (input){
-    const reg = new RegExp('^[0-9]+$');
     let errors= {}
-    if(!input.title) errors.title = "Intrudizca titulo de la receta"
+    if(!input.title) errors.title = "Intrudizca titulo de la receta";
+    if(!input.image) errors.image = "Ingrese una URL valida"
     if(!input.summary) errors.summary = "Por favor agrege resumen de la receta"
-    if(input.healthScore < 0 || input.healthScore > 100 || reg.test(input.healthScore)) errors.healthScore="Introduzca un healthScore entre 0 y 100"
+    if(input.healthScore < 0 || input.healthScore > 100) errors.healthScore="Introduzca un healthScore entre 0 y 100"
     if(!input.typeDiets) errors.typeDiets="Introduzca los tipos de dietas de la receta"
+    if(!input.instructions) errors.instructions="Introduzca 1 paso como minimo"
     return errors;
 }
 
@@ -23,9 +24,10 @@ export default function Create(){
     const [stepDescription, setStepDescription]=useState("")
     const [input, setInput]= useState({
         title:"",
+        image:"",
         summary:"",
         healthScore:"",
-        analyzedInstructions:"",
+        instructions:"",
         typeDiets:[],
     })
 
@@ -38,7 +40,7 @@ export default function Create(){
             const stepsString = listSteps.join("|");
             return{
                     ...prevInput,
-                    analyzedInstructions: stepsString,
+                    instructions: stepsString,
             } 
         })
     }, [listSteps, setInput])
@@ -64,13 +66,14 @@ export default function Create(){
     function handleSubmit (e){
         e.preventDefault();
         dispatch(postRecipes(input))
-        if(input.title && input.summary && input.healthScore && input.analyzedInstructions && input.typeDiets){
+        if(input.title && input.summary && input.healthScore && input.instructions && input.typeDiets){
             alert("Recipe created")
             setInput({
                 title:"",
+                image:"",
                 summary:"",
                 healthScore:"",
-                analyzedInstructions:"",
+                instructions:"",
                 typeDiets:[]
             })
         }
@@ -112,6 +115,12 @@ export default function Create(){
                 </div>
 
                 <div>
+                    <label>Image:</label>
+                    <input type="text" name="image" value={input.image} onChange={(e)=>{handleChange(e)}} />
+                    {errors.image && (<p>{errors.image}</p>)}
+                </div>
+
+                <div>
                     <label>Summary:</label>
                     <input type="text" name="summary" value={input.summary} onChange={(e)=>{handleChange(e)}} />
                     {errors.summary && (<p>{errors.summary}</p>)}
@@ -125,7 +134,7 @@ export default function Create(){
 
                 <div>
                     <label>Step by step:</label>
-                    <input type="text" name="analyzedInstructions" value={stepDescription} onChange={handleChangeStep} />
+                    <input type="text" name="instructions" value={stepDescription} onChange={handleChangeStep} />
                     <button onClick={handleStep}>Add step</button>
                 </div>
 
