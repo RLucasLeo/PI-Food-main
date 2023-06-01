@@ -39,7 +39,7 @@ export default function Detail() {
             <div>
         <h3>📋Step by step:</h3>
         <div>
-          {instructions && instructions.length >0 && (instructions.map((instruction, index) => (
+          { instructions? <p>{instructions}</p> : instructions && instructions.length >0 && (instructions.map((instruction, index) => (
             <div key={index}>
               <h4>{instruction.name}</h4>
               <ol>

@@ -37,7 +37,7 @@ export default function Create(){
     
     useEffect(()=>{
         setInput((prevInput)=>{
-            const stepsString = listSteps.join("|");
+            const stepsString = listSteps.join(" | ");
             return{
                     ...prevInput,
                     instructions: stepsString,
