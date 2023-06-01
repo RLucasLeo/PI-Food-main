@@ -1,39 +1,32 @@
 const axios = require("axios");
-const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 const { Diets } = require("../db");
+const {API_KEY} = process.env;
+
+const allDiets = async (req, res) => {
+    const dietsDB = []
+    const dietsAPI = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+    const arrayDiets = dietsAPI.results.map(recipe => recipe.diets)
+    for (let i = 0; i < arrayDiets.length; i++) {
+      for (let j=0; j<arrayDiets[i].length; j++){
+        if(!dietsDB.includes(arrayDiets[i][j])){
+          dietsDB.push(arrayDiets[i][j])
+        }
+      }
+    }
+    await Diets.bulkCreate(dietsDB.map(diet=>{
+      return {
+        title: diet
+      }
+    }), {ingoreDuplicates: true})
+    console.log('DB CARGADA')
+};
 
 const DietsInDb = async () => {
-    const dietsFromApi = [
-      "vegetarian",
-      "gluten free",
-      "dairy free",
-      "lacto ovo vegetarian",
-      "vegan",
-      "paleolithic",
-      "primal",
-      "whole 30",
-      "pescatarian",
-      "ketogenic",
-      "fodmap friendly",
-    ];
-    const diets = await Diets.findAll();
-    if (diets.length === 0) {
-      dietsFromApi.forEach(async (el) => {
-        await Diets.create({
-          id: uuidv4(),
-          title: el,
-        });
-      });
-    }
+    const dietsFromApi = await Diets.findAll()
     return dietsFromApi;
   };
   
-  const allDiets = async (req, res) => {
-    const allDiet = await DietsInDb(); // await Diet.findAll()
-    res.json(allDiet);
-  
-  };
   
   module.exports = {
     DietsInDb,
