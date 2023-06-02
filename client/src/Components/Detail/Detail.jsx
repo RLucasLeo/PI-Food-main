@@ -25,7 +25,7 @@ export default function Detail() {
 
     var regex = /(<([^>]+)>)/gi;
 
-    const { title, image, healthScore, diets, instructions, summary } = details[0];
+    const { title, image, healthScore, diets, summary } = details[0];
 
     return (
         <div className={s.card}>
@@ -39,16 +39,8 @@ export default function Detail() {
             <div>
         <h3>📋Step by step:</h3>
         <div>
-          { instructions? <p>{instructions}</p> : instructions && instructions.length >0 && (instructions.map((instruction, index) => (
-            <div key={index}>
-              <h4>{instruction.name}</h4>
-              <ol>
-                {instruction.steps.map((step, stepIndex) => (
-                  <li key={stepIndex}>{step.step}</li>
-                ))}
-              </ol>
-            </div>
-          )))}
+          {Array.isArray(details[0].instructions) ? details[0].instructions.map(e => e.steps.map(f => (
+          <li>{f.step}</li>))) : details[0].instructions.split('|').map(step => <li key={step}>{step}</li> ) }
         </div>
       </div>
             <p>❤️Type of diets: {diets?.map(g => (g.name ? g.name : g)).join(' | ')}</p>
