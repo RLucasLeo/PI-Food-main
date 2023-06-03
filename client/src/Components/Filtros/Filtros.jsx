@@ -1,12 +1,11 @@
+import React from "react";
 import { useEffect } from "react";
 import s from "./Filtros.module.css"
-import { useDispatch, useSelector } from "react-redux"
-import { getDiets } from "../../redux/actions";
+import { useDispatch } from "react-redux"
+import { getDiets } from "../../redux/actions/index";
 
 export default function Filtros ({handleSort, handleByScore, handleFilterByDiets}){
    const dispatch = useDispatch();
-   const dietas = useSelector(state=>state.dietas)
-    console.log("CONSOLE LOG DE DIETAS",dietas)
    useEffect(()=>{
     dispatch(getDiets())
    },[dispatch])
@@ -28,10 +27,16 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
 
         <select onChange={e => handleFilterByDiets(e)}>
             <option value='All'>Todas las dietas</option>
-            {dietas && dietas.length > 0 ? (
-            dietas.map((d) => (
-             <option key={d.id} value={d.name}>{d.name}</option>))
-                ) : <option>Error carga Dietas</option> }
+            <option value='gluten free'>Gluten free</option>
+            <option value='ketogenic'>Ketogenic</option>
+            <option value='dairy free'>Dairy free</option>
+            <option value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
+            <option value='vegan'>vegan</option>
+            <option value='pescatarian'>pescatarian</option>
+            <option value='paleolithic'>paleolithic</option>
+            <option value='primal'>primal</option>
+            <option value='whole 30'>whole 30</option>
+             
             <option value="createdInDb">Creados</option>
             
         </select>
