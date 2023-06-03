@@ -25,7 +25,7 @@ export default function Detail() {
     console.log("Log del details",details)
 
     if (carga) {
-        return "cargando paaa";
+        return (<img className={s.carga}src="https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-7.jpg" alt="CARGANDO" />);
       }
 
     var regex = /(<([^>]+)>)/gi;

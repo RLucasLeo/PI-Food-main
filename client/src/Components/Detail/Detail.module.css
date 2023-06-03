@@ -1,6 +1,11 @@
 *{
     margin: 0;
 }
+.carga{
+   
+    height: 80vw;
+    width: 80vw;
+}
 .card{
     display: flex;
     flex-direction: column;
