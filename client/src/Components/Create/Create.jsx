@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 import {postRecipes, getDiets} from "../../redux/actions/index"
 // import s from "./Create.module.css"
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 
 function controlForm (input){
     let errors= {}
@@ -17,7 +17,6 @@ function controlForm (input){
 
 export default function Create(){
     const dispatch = useDispatch();
-    const listDiets = useSelector((state)=> state.typediets)
     const [errors, setErrors] = useState({}) //estado para controlar el forumlario
     const [step, setStep] = useState(1)
     const [listSteps, setListSteps] = useState ([])
@@ -68,6 +67,7 @@ export default function Create(){
         dispatch(postRecipes(input))
         if(input.title && input.summary && input.healthScore && input.instructions && input.typeDiets){
             alert("Recipe created")
+            window.location.href = '/home'
             setInput({
                 title:"",
                 image:"",
@@ -139,7 +139,16 @@ export default function Create(){
                 </div>
 
                 <select onChange={(e)=>handleSelect(e)}>
-                    {listDiets?.map((d)=>{return <option key={d} value={d}></option>})}
+                <option value='All'>Todas las dietas</option>
+                     <option value='gluten free'>Gluten free</option>
+                     <option value='ketogenic'>Ketogenic</option>
+                     <option value='dairy free'>Dairy free</option>
+                     <option value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
+                     <option value='vegan'>vegan</option>
+                     <option value='pescatarian'>pescatarian</option>
+                     <option value='paleolithic'>paleolithic</option>
+                     <option value='primal'>primal</option>
+                     <option value='whole 30'>whole 30</option>
                 </select>
 
                 {errors.hasOwnProperty("title") || errors.hasOwnProperty("summary") || errors.hasOwnProperty("healthScore")?
