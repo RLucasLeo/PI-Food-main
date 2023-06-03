@@ -4,7 +4,7 @@ import Cards from "../Cards/Cards"
 import Filtros from "../Filtros/Filtros";
 import Paginado from "../Paginado/Paginado"
 import { useEffect, useState } from "react";
-import { filterByDiets, orderByName, orderByScore } from "../../redux/actions";
+import { filterByDiets, filterCreated, orderByName, orderByScore } from "../../redux/actions";
 
 export default function Home (){
     const dispatch = useDispatch();
@@ -29,6 +29,10 @@ export default function Home (){
     dispatch(filterByDiets(e.target.value));
    }
 
+   const handleFilterCreated=(e)=>{
+    dispatch(filterCreated(e.target.value))
+   }
+
    const handleSort=(e)=>{
     e.preventDefault();
     dispatch(orderByName(e.target.value));
@@ -47,7 +51,7 @@ export default function Home (){
         <div>
         <Navbar></Navbar>
         <Paginado recetasPorPag={recetasPorPag} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
-        <Filtros handleSort={handleSort} handleByScore={handleByScore} handleFilterByDiets={handleFilterByDiets}></Filtros>
+        <Filtros handleSort={handleSort} handleByScore={handleByScore} handleFilterByDiets={handleFilterByDiets} handleFilterCreated={handleFilterCreated}></Filtros>
         <Cards currentRecipes={currentRecipes}></Cards>
         </div>
     )

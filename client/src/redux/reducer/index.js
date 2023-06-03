@@ -18,18 +18,20 @@ function rootReducer (state=initialState, action) {
         case 'FILTER_BY_TYPEDIET':
         const allRec = state.allRecipes
         
-        const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typediets.includes(action.payload) )   
-        if(action.payload === 'createdInDb'){
-            const typeDietFilter = allRec.filter(t => t.updateAt === true)
-            return {
-                ...state,
-                recipes: typeDietFilter
-            }
-        }
+        const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typediets.includes(action.payload) )
         return{
                 ...state ,
                 recipes : typeDietFilter
         }
+
+        case 'FILTER_CREATED':
+            const createdFilter = action.payload === "Created" ?
+            state.allRecipes.filter((el)=>el.updateAt) : state.allRecipes.filter((el)=> !el.updateAt)
+            return{
+                ...state,
+                recipes: action.payload === 'All' ? state.allRecipes : createdFilter
+            }
+            
         case 'ORDER_BY_NAME' :
             let order = action.payload === 'asc' ? 
             state.recipes.sort(function(a,b) {

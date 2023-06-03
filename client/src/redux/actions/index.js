@@ -7,6 +7,7 @@ const GET_BY_NAME = 'GET_BY_NAME';
 const GET_BY_ID = 'GET_BY_ID';
 const  GET_TYPE_DIETS = 'GET_TYPE_DIETS';
 const DELETE_RECIPE = 'DELETE_RECIPE';
+const FILTER_CREATED = "FILTER_CREATED"
 
 export const getRecipes=()=>{
     return async(dispatch)=>{
@@ -25,6 +26,13 @@ export const getRecipes=()=>{
 export const filterByDiets = (payload)=>{
     return{
         tpye: FILTER_BY_TYPEDIET,
+        payload
+    }
+}
+
+export const filterCreated = (payload)=>{
+    return {
+        type: FILTER_CREATED,
         payload
     }
 }

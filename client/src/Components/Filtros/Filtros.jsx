@@ -4,7 +4,7 @@ import s from "./Filtros.module.css"
 import { useDispatch } from "react-redux"
 import { getDiets } from "../../redux/actions/index";
 
-export default function Filtros ({handleSort, handleByScore, handleFilterByDiets}){
+export default function Filtros ({handleSort, handleByScore, handleFilterByDiets, handleFilterCreated}){
    const dispatch = useDispatch();
    useEffect(()=>{
     dispatch(getDiets())
@@ -35,9 +35,13 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
             <option value='paleolithic'>paleolithic</option>
             <option value='primal'>primal</option>
             <option value='whole 30'>whole 30</option>
-             
-            <option value="createdInDb">Creados</option>
             
+        </select>
+            
+        <select onChange={(e)=>handleFilterCreated(e)}>
+                <option value='All'>Todas las recetas</option>
+                <option value='Created'>Creados</option>
+                <option value='Api'>Todos</option>
         </select>
         
 </div>
