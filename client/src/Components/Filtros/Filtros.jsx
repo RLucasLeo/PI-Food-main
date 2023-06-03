@@ -18,11 +18,10 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
         </select>
 
         <select onChange={e => handleByScore(e)}>
-             <option value=''>Ordenar por HealthScore</option>
-             <option value="menormayor">Menor a mayor score</option>
-             <option value="mayormenor">Mayor a menor score</option>
-             <option value="mayorcincuenta">Mas de 50</option>
-             <option value="menorcincuenta">Menos de 50</option>
+             <option value='All'>Ordenar por HealthScore</option>
+             <option value='menormayor'>Menor a mayor score</option>
+             <option value='mayormenor'>Mayor a menor score</option>
+            
         </select>
 
         <select onChange={e => handleFilterByDiets(e)}>

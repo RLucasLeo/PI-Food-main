@@ -18,9 +18,9 @@ function rootReducer (state=initialState, action) {
         case 'FILTER_BY_TYPEDIET':
         const allRec = state.allRecipes
         
-        const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typeDiets.find(e =>  e.name  === action.payload ) )   
+        const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typediets.includes(action.payload) )   
         if(action.payload === 'createdInDb'){
-            const typeDietFilter = allRec.filter(t => t.createdInDb === true)
+            const typeDietFilter = allRec.filter(t => t.updateAt === true)
             return {
                 ...state,
                 recipes: typeDietFilter
