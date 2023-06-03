@@ -77,7 +77,7 @@ async function getRecipesByName(req, res) {
             title:{[Sequelize.Op.like]:`%${query}%`}  
           },                  
           include : {
-            model : TypeDiet,
+            model : Diets,
             attributes : ['title'],               
             through: {
                 attributes:[]
