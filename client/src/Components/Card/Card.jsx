@@ -1,12 +1,9 @@
 import s from "./Card.module.css"
 import React from "react"
 import {Link} from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { deleteRecipes } from "../../redux/actions"
 
 const Card = (props)=> {
 
-   const dispatch = useDispatch()
        return (
            <div className={s.card}>
                
