@@ -8,21 +8,27 @@ import { getRecipesByName } from "../../redux/actions";
 export default function Navbar (){
 
   const[name, setSearch]= useState("")
+  const [recipe, setRecipe]= useState(null)
   const dispatch= useDispatch();
 
-//   const handleChange=(e)=>{
-//     e.preventDefault()
-//     setState(e.target.value)
-//   }
   const handleInputName=(e)=>{
     setSearch(e.target.value)
   }
 
   function handleSubmit(e){
     e.preventDefault(e);
-      dispatch(getRecipesByName(name));
-      setSearch(""); 
+      dispatch(getRecipesByName(name))
+        .then((data)=>{
+          setRecipe(data);})
   }
+
+if(recipe){
+  const id = recipe.payload[0].id;
+  return (
+    window.location.href = `/detail/${id}`
+  )
+}
+
 
    return(
     
@@ -37,7 +43,8 @@ export default function Navbar (){
               handleInputName(e);
             }}
             className={styles.searchbar}></input>
-          <button type="submit" className={styles.Button}>
+          <button type="submit" className={styles.Button}
+          >
             Buscar
           </button>
         </form> <div> <br />
