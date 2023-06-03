@@ -7,7 +7,7 @@ import { getRecipesByName } from "../../redux/actions";
 
 export default function Navbar (){
 
-  const[search, setSearch]= useState("")
+  const[name, setSearch]= useState("")
   const dispatch= useDispatch();
 
 //   const handleChange=(e)=>{
@@ -20,7 +20,7 @@ export default function Navbar (){
 
   function handleSubmit(e){
     e.preventDefault(e);
-      dispatch(getRecipesByName(search));
+      dispatch(getRecipesByName(name));
       setSearch(""); 
   }
 
@@ -32,7 +32,7 @@ export default function Navbar (){
             handleSubmit(e);
           }}>
           <input
-            type="text" placeholder="Buscar por nombre" value={search}
+            type="text" placeholder="Buscar por nombre" value={name}
             onChange={(e) => {
               handleInputName(e);
             }}
