@@ -55,3 +55,27 @@
 	position:relative;
 	top:1px;
 }
+
+.myButtonD {
+	box-shadow:inset 0px 1px 0px 0px #efdcfb;
+	background:linear-gradient(to bottom, #ffd107 5%, #ffd900 100%);
+	background-color:#dfbdfa;
+	border-radius:6px;
+	border:1px solid #c584f3;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.myButtonD:hover {
+	background:linear-gradient(to bottom, #3d96fc 5%, #2962fd 100%);
+	background-color:#bc80ea;
+}
+.myButtonD:active {
+	position:relative;
+	top:1px;
+}

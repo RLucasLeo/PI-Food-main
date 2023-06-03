@@ -16,6 +16,11 @@ export default function Detail() {
         dispatch(getRecipesById(id)).then(() => setCarga(false))
     }, [dispatch, id])
 
+    function recipeDeleted(){
+        window.alert('Recipe Deleted');
+        window.location.href = '/home';
+    }
+
     const details = useSelector(state => state.details)
     console.log("Log del details",details)
 
@@ -55,7 +60,7 @@ export default function Detail() {
             <p>❤️Type of diets: {diets?.map(g => (g.name ? g.name : g)).join(' | ')}</p>
            
             {createdAt ? (
-                <button onClick={() => dispatch(deleteRecipes(id))}>
+                <button className={s.myButtonD} onClick={() => {dispatch(deleteRecipes(id)); recipeDeleted();}}>
                   Delete
                 </button>
               ) : null}
