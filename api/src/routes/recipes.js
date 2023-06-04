@@ -42,6 +42,7 @@ router.post('/', async (req, res, next)=>{
         summary,
         healthScore,
         instructions,
+        typeDiets,
     } = req.body;
     if(!title || !summary){
         return res.status(400).send("Ingrese titulo y resumen para continuar!");
@@ -51,9 +52,10 @@ router.post('/', async (req, res, next)=>{
             image,
             summary,
             healthScore,
-            instructions
+            instructions,
+            typeDiets,
         })
-        let dietDb = await Diets.findAll({where: { title: { [Op.in]: Diets } } });
+        let dietDb = await Diets.findAll({where: { title: { [Op.in]: typeDiets } } });
             createRecipe.addDiets(dietDb)
             res.status(200).send('Receta creada')
             
