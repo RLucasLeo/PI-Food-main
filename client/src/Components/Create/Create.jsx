@@ -105,7 +105,7 @@ export default function Create(){
 
     return (
         <div>
-            <Link to="/home"><button>Back to the main page</button></Link>
+            <Link to="/home"><button>Regresar</button></Link>
             <h1>Create your recipe</h1>
             <form onSubmit={(e)=>{handleSubmit(e)}}>
                 <div>
@@ -139,7 +139,7 @@ export default function Create(){
                 </div>
 
                 <select onChange={(e)=>handleSelect(e)}>
-                <option value='All'>Todas las dietas</option>
+                <option>Seleccione tipo de dieta</option>
                      <option value='gluten free'>Gluten free</option>
                      <option value='ketogenic'>Ketogenic</option>
                      <option value='dairy free'>Dairy free</option>
