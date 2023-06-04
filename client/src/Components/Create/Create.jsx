@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 import {postRecipes, getDiets} from "../../redux/actions/index"
-// import s from "./Create.module.css"
+ import s from "./Create.module.css"
 import {useDispatch, useSelector} from "react-redux"
 
 function controlForm (input){
     let errors= {}
     if(!input.title) errors.title = "Intrudizca titulo de la receta";
-    if(!input.image) errors.image = "Ingrese una URL valida"
+    if(!input.image) errors.image = "Ingrese una URL de imagen"
     if(!input.summary) errors.summary = "Por favor agrege resumen de la receta"
     if(input.healthScore < 0 || input.healthScore > 100) errors.healthScore="Introduzca un healthScore entre 0 y 100"
     if(!input.typeDiets) errors.typeDiets="Introduzca los tipos de dietas de la receta"
@@ -59,7 +59,7 @@ export default function Create(){
     function handleSelect(e){
         setInput({
             ...input,
-            typeDiets: [...input.typeDiets, e.target.vlaue]
+            typeDiets: [...input.typeDiets, e.target.value]
         })
     }
 
@@ -67,7 +67,7 @@ export default function Create(){
         e.preventDefault();
         dispatch(postRecipes(input))
         if(input.title && input.summary && input.healthScore && input.instructions && input.typeDiets){
-            alert("Recipe created")
+            alert("Receta creada")
             window.location.href = '/home'
             setInput({
                 title:"",
@@ -78,7 +78,7 @@ export default function Create(){
                 typeDiets:[]
             })
         }
-        else {alert ("Please fill all the fields")}
+        else {alert ("Por favor complete todos los campos")}
     }
 
     function handleDelete (e){
@@ -101,44 +101,45 @@ export default function Create(){
             setStep(step + 1 )
             setStepDescription("")
         }
-        else {alert("Please put a step")}
+        else {alert("Intruduzca un paso como minimo")}
     }
 
     return (
-        <div>
-            <Link to="/home"><button>Regresar</button></Link>
-            <h1>Create your recipe</h1>
+        <div className={s.containerBox}>
+            <Link to="/home"><button className={s.myButton}>Regresar</button></Link>
+            <h1>¡Crea tu receta!</h1>
             <form onSubmit={(e)=>{handleSubmit(e)}}>
                 <div>
-                    <label>Title:</label>
+                    <label>Titulo</label>
                     <input type="text" name="title" value={input.title} onChange={(e)=>{handleChange(e)}} />
-                    {errors.title && (<p>{errors.title}</p>)}
+                    {errors.title && (<p className={s.errmsg}>{errors.title}</p>)}
                 </div>
 
                 <div>
-                    <label>Image:</label>
-                    <input type="text" name="image" value={input.image} onChange={(e)=>{handleChange(e)}} />
-                    {errors.image && (<p>{errors.image}</p>)}
+                    <label>Imagen</label>
+                    <input type="url" name="image" value={input.image} onChange={(e)=>{handleChange(e)}} />
+                    {errors.image && (<p className={s.errmsg}>{errors.image}</p>)}
                 </div>
 
                 <div>
-                    <label>Summary:</label>
+                    <label>Resumen </label>
                     <input type="text" name="summary" value={input.summary} onChange={(e)=>{handleChange(e)}} />
-                    {errors.summary && (<p>{errors.summary}</p>)}
+                    {errors.summary && (<p className={s.errmsg}>{errors.summary}</p>)}
                 </div>
 
                 <div>
-                    <label >HealthScore:</label>
-                    <input type="text" name="healthScore" value ={input.healthScore} onChange={(e)=>{handleChange(e)}} />
-                    {errors.healthScore && (<p>{errors.healthScore}</p>)}
+                    <label >HealthScore </label>
+                    <input type="number" name="healthScore" value ={input.healthScore} onChange={(e)=>{handleChange(e)}} />
+                    {errors.healthScore && (<p className={s.errmsg}>{errors.healthScore}</p>)}
                 </div>
 
                 <div>
-                    <label>Step by step:</label>
+                    <label>Paso a paso </label>
                     <input type="text" name="instructions" value={stepDescription} onChange={handleChangeStep} />
-                    <button onClick={handleStep}>Add step</button>
+                    <button className={s.myButton2} onClick={handleStep}>Añadir paso</button>
                 </div>
 
+                <label>Tipo de dieta </label>
                 <select onChange={(e)=>handleSelect(e)}>
                     {listDiets?.map((t)=>{
                         return <option key={t} value={t}>{t}</option>
@@ -146,15 +147,16 @@ export default function Create(){
                 </select>
 
                 {errors.hasOwnProperty("title") || errors.hasOwnProperty("summary") || errors.hasOwnProperty("healthScore")?
-                <p>Please complete all the inputs to create your recupe</p>:
-                <button type="submit">Create recipe</button>}
+                <p className={s.errmsg}>Por favor complete todos los campos para crear su receta</p>:
+                <button className={s.myButton3} type="submit">Crear receta</button>}
 
             </form>
 
             {input.typeDiets.map(e=>{
+                console.log("log de borrar dietas", input.typeDiets)
                 return (
-                    <div key="typeDiets">
-                        <h5>{e}</h5>
+                    <div key={e}>
+                        <p>{e}</p>
                         <button onClick={()=> handleDelete(e)}>X</button>
                     </div>
                 )
