@@ -16,13 +16,30 @@ function rootReducer (state=initialState, action) {
             }
 
         case 'FILTER_BY_TYPEDIET':
-        const allRec = state.allRecipes
+        let auxi=[]
+        if(action.payload){
+            auxi = state.recipes.filter(e=>{
+                if(e.diets.length !== 0){
+                    console.log("ESTE ES DE === 0")
+                    return e.diets;
+                }
+                else if (e.diets.some(e=> e.title === action.payload)){
+                    console.log("else if", e.diets)
+                        return e.diets.map(el=>el.title)
+                        }
+                else {console.log("else ", e.diets)
+                   return e.diets.includes(action.payload)
+               }
+                    })
+               }
+               else { console.log("log del else fuera")
+                   auxi=state.recipes;
+              }
+               return {
+                  ...state,
+                   allRecipes: auxi,
+               }
         
-        const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typediets && t.typediets.includes(action.payload))
-        return{
-                ...state ,
-                recipes : typeDietFilter
-        }
 
         case 'FILTER_CREATED':
            switch(action.payload){
