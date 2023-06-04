@@ -25,13 +25,24 @@ function rootReducer (state=initialState, action) {
         }
 
         case 'FILTER_CREATED':
-            const createdFilter = action.payload === "Created" ?
-            state.allRecipes.filter((el)=>el.updateAt) : state.allRecipes.filter((el)=> !el.updateAt)
-            return{
-                ...state,
-                recipes: action.payload === 'All' ? state.allRecipes : createdFilter
-            }
-            
+           switch(action.payload){
+            case ('Api'):
+                 return {...state, 
+                recipes: state.allRecipes.filter((recipe)=> !isNaN(recipe.id))
+                        }
+            case ('Created'):
+                return {
+                    ...state,
+                    recipes: state.allRecipes.filter((recipe)=>isNaN(recipe.id))
+                        }
+            case ('All'):
+                return {
+                    ...state,
+                    recipes: state.allRecipes
+                }
+                default: return {...state}
+           }
+
         case 'ORDER_BY_NAME' :
             let order = action.payload === 'asc' ? 
             state.recipes.sort(function(a,b) {
