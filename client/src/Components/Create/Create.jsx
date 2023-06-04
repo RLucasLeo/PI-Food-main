@@ -155,9 +155,9 @@ export default function Create(){
             {input.typeDiets.map(e=>{
                 console.log("log de borrar dietas", input.typeDiets)
                 return (
-                    <div key={e}>
+                    <div key={e} className={s.diets}>
                         <p>{e}</p>
-                        <button onClick={()=> handleDelete(e)}>X</button>
+                        <button className={s.dietsB} onClick={()=> handleDelete(e)}>X</button>
                     </div>
                 )
             })}

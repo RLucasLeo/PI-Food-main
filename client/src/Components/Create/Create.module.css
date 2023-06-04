@@ -8,7 +8,7 @@
     font-weight: bold;
     margin: auto;
     padding: 20px;
-    width: 500px;
+    width: 50vw;
     height:auto;
     background-color: rgba(11, 255, 243, 0.973);
     background-origin: content-box;
@@ -113,4 +113,24 @@
     outline: none;
     margin: 10px;
     border-radius: 9px;
+  }
+
+  .diets{
+	margin: 2px;
+	display: inline-block;
+	padding: 4px;
+	border-radius: 9px;
+	background-color: rgb(0, 255, 106);
+	border: 1px solid black;
+  }
+
+  .dietsB {
+	color: red;
+	border: 1px solid black;
+	background-color: yellow;
+  }
+  .dietsB:hover{
+	background-color: red;
+	cursor: pointer;
+	color: yellow
   }
