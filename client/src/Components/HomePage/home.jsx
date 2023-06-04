@@ -26,10 +26,12 @@ export default function Home (){
    },[currentPage])
 
    const handleFilterByDiets=(e)=>{
+    e.preventDefault();
     dispatch(filterByDiets(e.target.value));
    }
 
    const handleFilterCreated=(e)=>{
+    e.preventDefault();
     dispatch(filterCreated(e.target.value))
    }
 
