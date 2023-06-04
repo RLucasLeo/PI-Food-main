@@ -25,7 +25,7 @@ export const getRecipes=()=>{
 
 export const filterByDiets = (payload)=>{
     return{
-        tpye: FILTER_BY_TYPEDIET,
+        type: FILTER_BY_TYPEDIET,
         payload
     }
 }
