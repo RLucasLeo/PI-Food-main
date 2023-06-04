@@ -23,7 +23,7 @@ const DietsInDb = async () => {
       dietsFromApi.map(async (el) => {
         await Diets.create({
           id: uuidv4(),
-          title: el,
+          name: el,
         });
       })
     );

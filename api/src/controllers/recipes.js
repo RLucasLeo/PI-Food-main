@@ -25,7 +25,7 @@ const getDBInfo = async function(){
     return await Recipe.findAll({
         include: {
             model: Diets,
-            attributes: ['title'],
+            attributes: ['name'],
             through: {
                 attributes:[],
             }
@@ -49,7 +49,7 @@ async function getRecipesByName(req, res) {
         const recipeBD = await Recipe.findAll({         
           include: {
             model: Diets,                             
-            attributes: ["title"],                      
+            attributes: ["name"],                      
             through: {
               attributes: [],
             },
@@ -78,7 +78,7 @@ async function getRecipesByName(req, res) {
           },                  
           include : {
             model : Diets,
-            attributes : ['title'],               
+            attributes : ['name'],               
             through: {
                 attributes:[]
             }

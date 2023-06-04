@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     unique: true,
     primaryKey: true
    },
-   title:{
+   name:{
     type: DataTypes.TEXT,
     allowNull: false
    }
