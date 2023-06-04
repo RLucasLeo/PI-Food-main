@@ -19,7 +19,7 @@ function rootReducer (state=initialState, action) {
         let auxi=[]
         if(action.payload){
             auxi = state.recipes.filter(e=>{
-                if(e.diets.length !== 0){
+                if(e.diets.length === 0){
                     console.log("ESTE ES DE === 0")
                     return e.diets;
                 }
