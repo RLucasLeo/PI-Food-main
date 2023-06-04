@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 import {postRecipes, getDiets} from "../../redux/actions/index"
 // import s from "./Create.module.css"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 
 function controlForm (input){
     let errors= {}
@@ -19,6 +19,7 @@ export default function Create(){
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({}) //estado para controlar el forumlario
     const [step, setStep] = useState(1)
+    const listDiets = useSelector((state)=> state.typediets)
     const [listSteps, setListSteps] = useState ([])
     const [stepDescription, setStepDescription]=useState("")
     const [input, setInput]= useState({
@@ -139,16 +140,9 @@ export default function Create(){
                 </div>
 
                 <select onChange={(e)=>handleSelect(e)}>
-                <option>Seleccione tipo de dieta</option>
-                     <option value='gluten free'>Gluten free</option>
-                     <option value='ketogenic'>Ketogenic</option>
-                     <option value='dairy free'>Dairy free</option>
-                     <option value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
-                     <option value='vegan'>vegan</option>
-                     <option value='pescatarian'>pescatarian</option>
-                     <option value='paleolithic'>paleolithic</option>
-                     <option value='primal'>primal</option>
-                     <option value='whole 30'>whole 30</option>
+                    {listDiets?.map((t)=>{
+                        return <option key={t} value={t}>{t}</option>
+                    })}
                 </select>
 
                 {errors.hasOwnProperty("title") || errors.hasOwnProperty("summary") || errors.hasOwnProperty("healthScore")?

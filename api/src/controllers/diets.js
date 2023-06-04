@@ -19,15 +19,19 @@ const DietsInDb = async () => {
   ];
   const diets = await Diets.findAll();
   if (diets.length === 0) {
-    dietsFromApi.forEach(async (el) => {
-      await Diets.create({
-        id: uuidv4(),
-        title: el,
-      });
-    });
+    await Promise.all(
+      dietsFromApi.map(async (el) => {
+        await Diets.create({
+          id: uuidv4(),
+          title: el,
+        });
+      })
+    );
+  }
+    
     return dietsFromApi
   }
-}
+
 
   const allDiets = async (req, res) => {
     const allDiet = await DietsInDb(); // await Diet.findAll()

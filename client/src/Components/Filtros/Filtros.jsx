@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
 import s from "./Filtros.module.css"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getDiets } from "../../redux/actions/index";
 
 export default function Filtros ({handleSort, handleByScore, handleFilterByDiets, handleFilterCreated}){
-   const dispatch = useDispatch();
+    const listDiets = useSelector((state)=> state.typediets)
+    const dispatch = useDispatch();
    useEffect(()=>{
     dispatch(getDiets())
    },[dispatch])
@@ -25,17 +26,10 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
         </select>
 
         <select onChange={e => handleFilterByDiets(e)}>
-            <option value='All'>Todas las dietas</option>
-            <option value='gluten free'>Gluten free</option>
-            <option value='ketogenic'>Ketogenic</option>
-            <option value='dairy free'>Dairy free</option>
-            <option value='lacto ovo vegetarian'>lacto ovo vegetarian</option>
-            <option value='vegan'>vegan</option>
-            <option value='pescatarian'>pescatarian</option>
-            <option value='paleolithic'>paleolithic</option>
-            <option value='primal'>primal</option>
-            <option value='whole 30'>whole 30</option>
-            
+            <option value='All'>Todas las recetas</option>
+            {listDiets?.map((t)=>{
+        return <option key={t} value={t}>{t}</option>
+                    })}
         </select>
             
         <select onChange={(e)=>handleFilterCreated(e)}>
