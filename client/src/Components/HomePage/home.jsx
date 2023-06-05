@@ -8,7 +8,7 @@ import { filterByDiets, filterCreated, orderByName, orderByScore } from "../../r
 
 export default function Home (){
     const dispatch = useDispatch();
-    const allRecipes = useSelector(state=>state.allRecipes)
+    const allRecipes = useSelector(state=>state.recipes)
    
     const [//orden
     , setOrden] = useState("")
