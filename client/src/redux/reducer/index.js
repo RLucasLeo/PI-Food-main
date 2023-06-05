@@ -98,20 +98,8 @@ function rootReducer (state=initialState, action) {
                 }
                 return 0
             })
-            if(action.payload === 'mayorcincuenta'){
-                const orderpunt = state.recipes.filter(t => t.healthScore >= 50)
-                return{
-                    ...state ,
-                    recipes : orderpunt
-                }
-            }
-            if(action.payload === 'menorcincuenta'){
-                    const orderpunt = state.recipes.filter(t => t.healthScore <= 50)
-            return{
-                ...state ,
-                recipes : orderpunt
-        }
-        }
+            
+        
             return{
                 ...state ,
                 recipes : orderpunt
