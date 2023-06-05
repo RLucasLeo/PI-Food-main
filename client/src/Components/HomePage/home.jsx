@@ -27,7 +27,8 @@ export default function Home (){
 
    const handleFilterByDiets=(e)=>{
     e.preventDefault();
-    dispatch(filterByDiets(e.target.value));
+    const dietas = e.target.value;
+    dispatch(filterByDiets(dietas));
    }
 
    const handleFilterCreated=(e)=>{
