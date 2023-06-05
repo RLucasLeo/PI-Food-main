@@ -12,7 +12,7 @@ const FILTER_CREATED = "FILTER_CREATED"
 export const getRecipes=()=>{
     return async(dispatch)=>{
         try {
-            const {data} = await axios.get("http://localhost:3001/recipes");
+            const {data} = await axios.get("/recipes");
             return dispatch({
                 type: GET_RECIPES,
                 payload: data,
@@ -54,7 +54,7 @@ export const orderByScore=(payload)=>{
 export const getRecipesByName=(name)=>{
     return async (dispatch)=>{
         try {
-            const {data}= await axios.get(`http://localhost:3001/recipes?name=${name}`);
+            const {data}= await axios.get(`/recipes?name=${name}`);
             return dispatch ({
                 type: GET_BY_NAME,
                 payload: data,
@@ -68,7 +68,7 @@ export const getRecipesByName=(name)=>{
 export const getRecipesById = (id) =>{
 return async (dispatch)=>{
      try {
-        const {data}= await axios.get(`http://localhost:3001/recipes/${id}`)
+        const {data}= await axios.get(`/recipes/${id}`)
         return dispatch({
             type: GET_BY_ID,
             payload: data,
@@ -82,7 +82,7 @@ return async (dispatch)=>{
 export const getDiets=()=>{
     return async (dispatch)=>{
         try {
-            const {data} = await axios.get("http://localhost:3001/diets")
+            const {data} = await axios.get("/diets")
             return dispatch({
                 type: GET_TYPE_DIETS,
                 payload: data,
@@ -96,7 +96,7 @@ export const getDiets=()=>{
 export const postRecipes = (payload)=>{
     return async ()=>{
             try {
-                const  dat = await axios.post("http://localhost:3001/recipes", payload);
+                const  dat = await axios.post("/recipes", payload);
                 return dat;
             } catch (error) {
                 console.log(error)
@@ -107,7 +107,7 @@ export const postRecipes = (payload)=>{
 export const deleteRecipes = (id)=>{
     return async (dispatch)=>{
         try {
-            const {data} = await axios.delete(`http://localhost:3001/recipes/${id}`);
+            const {data} = await axios.delete(`/recipes/${id}`);
             return dispatch({
                 type: DELETE_RECIPE,
                 payload: data,
