@@ -61,7 +61,7 @@ export default function Detail() {
            
             {createdAt ? (
                 <button className={s.myButtonD} onClick={() => {dispatch(deleteRecipes(id)); recipeDeleted();}}>
-                  Delete
+                  Eliminar receta
                 </button>
               ) : null}
 
