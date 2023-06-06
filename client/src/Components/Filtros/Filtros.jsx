@@ -26,7 +26,7 @@ export default function Filtros ({handleSort, handleByScore, handleFilterByDiets
         </select>
 
         <select onChange={e => handleFilterByDiets(e)}>
-            <option value='All'>Todas las dietas</option>
+            <option key='All' value='All'>Todas las dietas</option>
             {listDiets?.map((t)=>{
         return <option key={t} value={t}>{t}</option>
                     })}

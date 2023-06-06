@@ -19,10 +19,12 @@ function rootReducer (state=initialState, action) {
         let auxi=[];
         if(typeof action.payload ==='string'){auxi = [action.payload]}
         else{auxi = action.payload}
-        const recipesFiltradas = state.recipes.filter((recipe)=>{
+        let recipesFiltradas=[];
+        if(action.payload === 'All'){recipesFiltradas=state.allRecipes}
+        else {recipesFiltradas = state.allRecipes.filter((recipe)=>{
             return recipe.diets.some((dieta)=> {
             return auxi.includes(dieta.name)})
-        })
+        })}
         return {
             
             ...state,
