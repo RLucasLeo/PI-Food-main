@@ -38,14 +38,16 @@
 border: 3px solid rgb(78, 194, 32);
 background-color: #3bdb50b4;
 color:rgb(15, 7, 17);
+border-radius: 5px;
 }
 
 .Button2{
 	padding: 3px 5px;
 	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background-color:#ff6f2c;
-	border-radius:3px;
+	background-color:#69f816;
+	border-radius:5px;
 	border:1px solid #ffc165;
+	font-weight: bold;
 	display:inline-block;
 	cursor:pointer;
 	color: black;
