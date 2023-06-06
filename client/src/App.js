@@ -6,7 +6,7 @@ import Detail from './Components/Detail/Detail';
 import Create from './Components/Create/Create';
 import axios from "axios"
 import Error404 from './Components/Error404/Error404';
-axios.defaults.baseURL = "https://food-pi.onrender.com/git "
+axios.defaults.baseURL = "https://food-pi.onrender.com"
 function App() {
   return (
    
