@@ -12,7 +12,8 @@
 .errorCarga{
     display: flexbox;
     margin: auto;
-    margin-left: 90%;
+    margin-left: 5vw;
+    width: 90vw;
     margin-top: 5vw;
     padding: 10px 10px;
     border: 2px solid rgb(255, 80, 80);
