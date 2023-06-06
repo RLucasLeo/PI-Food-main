@@ -33,7 +33,7 @@
 .containerCentral {
     display: flexbox;
     margin: auto;
-    padding-top: 20px;
+    padding: 20px 20px;
     width: 50vw;
     height: auto;
     background-color: rgba(28, 212, 59, 0.61);
