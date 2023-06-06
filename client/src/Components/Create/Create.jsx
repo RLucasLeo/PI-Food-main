@@ -66,7 +66,7 @@ export default function Create(){
     function handleSubmit (e){
         e.preventDefault();
         dispatch(postRecipes(input))
-        if(input.title && input.summary && input.healthScore && input.instructions && input.typeDiets){
+        if(input.title && input.image &&input.summary && input.healthScore && input.instructions && input.typeDiets){
             alert("Receta creada")
             window.location.href = '/home'
             setInput({

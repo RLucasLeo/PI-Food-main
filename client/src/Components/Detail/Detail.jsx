@@ -17,7 +17,7 @@ export default function Detail() {
     }, [dispatch, id])
 
     function recipeDeleted(){
-        window.alert('Recipe Deleted');
+        window.alert('Receta eliminada');
         window.location.href = '/home';
     }
 
@@ -49,7 +49,7 @@ export default function Detail() {
             <p >💪HealthScore: {healthScore}</p>
             
             <div>
-        <h3>📋Step by step:</h3>
+        <h3>📋Step by step</h3>
         <div>
           {Array.isArray(details[0].instructions) ? details[0].instructions.map(e => e.steps.map(f => (
           <li>{f.step}</li>))) : details[0].instructions.split('|').map(step => <li key={step}>{step}</li> ) }
