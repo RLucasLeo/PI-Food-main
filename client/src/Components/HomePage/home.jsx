@@ -56,6 +56,7 @@ export default function Home (){
         <Paginado recetasPorPag={recetasPorPag} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
         <Filtros handleSort={handleSort} handleByScore={handleByScore} handleFilterByDiets={handleFilterByDiets} handleFilterCreated={handleFilterCreated}></Filtros>
         <Cards currentRecipes={currentRecipes}></Cards>
+        <Paginado recetasPorPag={recetasPorPag} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
         </div>
     )
 }
